@@ -13,4 +13,21 @@ Solution : SELECT distinct(CITY)
            FROM STATION
            where city REGEXP '^[aeiou]'
 
-####Query 3 : Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates. 
+####Query 3 : Generate the following two result sets:
+
+Query an alphabetically ordered list of all names in OCCUPATIONS, immediately followed by the first letter of each profession as a parenthetical (i.e.: enclosed in parentheses). For example: AnActorName(A), ADoctorName(D), AProfessorName(P), and ASingerName(S).
+Query the number of ocurrences of each occupation in OCCUPATIONS. Sort the occurrences in ascending order, and output them in the following format:
+
+There are a total of [occupation_count] [occupation]s.
+Solution : 
+
+select concat(name,'(',upper(substring(occupation,1,1)),')')
+from occupations
+order by name;
+
+select concat("There are a total of",' ',count(occupation),' ',lower(occupation),'s',".")
+from occupations
+group by occupation
+order by count(occupation) asc;
+
+
